@@ -12,7 +12,7 @@ class ChannelsController < ApplicationController
     channel = Channel.find_by(id: params[:id])
     if channel
       channel.destroy
-      render json: { status: 200, channel_id: channel.id }
+      render json: { status: 204, channel_id: channel.id }
     else
       render json: { status: 404 }
     end
