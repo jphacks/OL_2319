@@ -14,7 +14,7 @@ export const ChannelExitModal = (props: { className?: string }) => {
           <Link to={`/select`}>
             <button
               type="button"
-              className="btn btn-danger fw-bold me-3 px-4 py-3 lh-1 fs-5"
+              className="btn btn-danger fw-bold me-5 px-4 py-3 lh-1 fs-5"
               data-bs-dismiss="modal"
             >
               退出する

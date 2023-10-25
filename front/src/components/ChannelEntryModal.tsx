@@ -18,7 +18,7 @@ export const ChannelEntryModal = (props: {
         <div className="channel-tags">
           {channel.tags.map((tag: Tag) => (
             <span
-              className="badge bg-secondary me-3 fw-medium fs-6"
+              className="badge bg-secondary me-5 fw-medium fs-6"
               key={tag.id}
             >
               {tag.name}
