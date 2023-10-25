@@ -1,5 +1,5 @@
 .chat {
-  height: calc(100vh - 59px - 64px);
+  height: calc(100vh - 59px - 32px);
   z-index: 0;
 }
 .chat .chat-header {

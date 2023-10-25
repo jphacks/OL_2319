@@ -3,7 +3,7 @@ export const ChatLeftSideBar = (props: { className?: string }) => {
   return (
     <>
       <div className={`channel-left-bar text-center bg-primary d-flex flex-column align-items-center ${className}`}>
-        <button type="button" className="btn btn-back mt-7">
+        <button type="button" className="btn btn-back mt-7" data-bs-toggle="modal" data-bs-target="#modal-channel-exit">
           <img src="/arrow-back.svg" alt="back" width={40}/>
         </button>
         <div className="user-avater mt-7">
