@@ -1,0 +1,41 @@
+.chat {
+  height: calc(100vh - 59px - 64px);
+}
+.chat .chat-header {
+  background-color: #495057;
+}
+.chat .chat-timestamp {
+  color: #6c757d;
+  font-size: 14px;
+}
+.chat .question {
+  background-color: #FFEBAE;
+}
+.chat .chat-window {
+  overflow-y: auto;
+}
+.chat .chat-avater img {
+  border-radius: 50%;
+}
+.chat textarea {
+  box-shadow: none;
+  max-height: 10em;
+}
+.chat .chat-send {
+  border: none;
+  background: inherit;
+}
+
+#modal-question .toggle-preview label.btn {
+  border: 1px solid #495057;
+}
+#modal-question .toggle-preview label.btn.btn-check:checked + btn {
+  color: white;
+  background-color: #FFC107;
+}
+#modal-question .question-content {
+  max-height: 50vh;
+}
+#modal-question .w-md-editor-fullscreen {
+  max-height: 100vh;
+}
