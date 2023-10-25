@@ -8,3 +8,9 @@ export type Channel = {
   is_anonymous: boolean;
   tags: Tag[];
 };
+
+export type ChannelUpdate = {
+  name: string | null;
+  description: string | null;
+  tags: Tag[] | null;
+}

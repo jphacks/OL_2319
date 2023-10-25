@@ -202,7 +202,18 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
           <div className="chat-header-text ms-7 fw-bold fs-4 text-white my-3">
             ワールド
           </div>
-          <img src="/setting.svg" alt="setting" height={38} className="me-6" />
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-channel-edit"
+          >
+            <img
+              src="/setting.svg"
+              alt="setting"
+              height={38}
+              className="me-6"
+            />
+          </button>
         </div>
         <div className="chat-window mt-auto">
           {dummyChats.map((chat, i) => (
