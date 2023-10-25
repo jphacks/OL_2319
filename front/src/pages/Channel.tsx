@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
-import { Header } from "../components";
 import {
+  Header,
   ChatMain,
   ChatLeftSideBar,
   ChatRightSideBar,
-} from "../components/chat";
-import { ChannelExitModal } from "../components/ChannelExitModal";
-
+  ChannelExitModal,
+} from "../components";
 
 export const Channel = () => {
   const { chennelId } = useParams();
