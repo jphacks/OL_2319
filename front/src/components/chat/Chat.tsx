@@ -8,7 +8,7 @@ export const Chat = (props: { className?: string; chat: ChatLog }) => {
         className={`d-flex ${className} ${chat.is_question ? "question" : ""}`}
       >
         <div className="chat-avater">
-          <img src="//placekitten.com/200" alt="user avater" width={40} />
+          <img src="http://placekitten.com/200" alt="user avater" width={40} />
         </div>
         <div>
           <div className="d-flex align-items-center">
