@@ -7,4 +7,15 @@ class ChannelsController < ApplicationController
       render json: { status: 200 }
     end
   end
+
+  def delete
+    channel = Channel.find_by(id: params[:id])
+    if channel
+      channel.destroy
+      render json: { status: 200, channel_id: channel.id }
+    else
+      render json: { status: 404 }
+    end
+  end
+
 end
