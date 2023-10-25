@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  channel_id: 
+  user_id: 
+  content: MyText
+  reply_to: 
+  is_question: false
+
+two:
+  channel_id: 
+  user_id: 
+  content: MyText
+  reply_to: 
+  is_question: false

@@ -1,0 +1,2 @@
+class ChannelTagRel < ApplicationRecord
+end
