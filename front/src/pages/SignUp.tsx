@@ -31,7 +31,7 @@ export const SignUp = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 from-center">
         <Link to="/">
           <img src="/logo.svg" alt="logo image" className="logo w-100" />
         </Link>

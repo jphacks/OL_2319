@@ -11,10 +11,11 @@ body {
   background-color: $gray-100;
 }
 
-form {
+form.from-center {
   max-width: 400px;
   margin: 0 auto;
   font-size: 1rem;
+  line-height: normal;
 }
 
 a { text-decoration: none; }
@@ -27,4 +28,9 @@ button {
     color: $gray-700;
     border-color: $gray-700;
   }
+}
+
+button {
+  border: none;
+  background-color: inherit;
 }
