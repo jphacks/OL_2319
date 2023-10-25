@@ -1,0 +1,14 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+.hero-image {
+  background-color: $gray-100;
+  img {
+    width: 100%;
+  }
+  button {
+    background-color: $gray-700;
+    letter-spacing: 1.2px;
+    line-height: 1.25rem;
+  }
+}

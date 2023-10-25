@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./styles/CustomBootstrap.scss";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Top, SignUp, Login, Select, Channel } from "./pages";
 import "./App.scss";
