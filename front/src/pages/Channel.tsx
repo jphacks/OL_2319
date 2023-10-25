@@ -3,11 +3,7 @@ import { Header } from "../components";
 import {
   ChatMain,
   ChatLeftSideBar,
-<<<<<<< HEAD
   ChatRightSideBar,
-=======
-  ChatRightSideBar
->>>>>>> 3bc80954e920a969ce54957165e242d138ae105e
 } from "../components/chat";
 
 export const Channel = () => {
