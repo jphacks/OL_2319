@@ -6,6 +6,7 @@ import {
   ChatRightSideBar,
   ChannelExitModal,
   ChannelEditModal,
+  ChannelDeleteModal,
 } from "../components";
 
 export const Channel = () => {
@@ -19,6 +20,7 @@ export const Channel = () => {
         <ChatRightSideBar className="w-25" />
         <ChannelExitModal />
         <ChannelEditModal />
+        <ChannelDeleteModal />
       </div>
     </>
   );

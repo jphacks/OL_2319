@@ -1,2 +1,2 @@
 export { ChannelExitModal } from "./ChannelExitModal";
-export { ChannelEditModal } from "./ChannelEditModal";
+export { ChannelEditModal, ChannelDeleteModal } from "./ChannelEditModal";
