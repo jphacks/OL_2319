@@ -20,6 +20,11 @@ npm i
 cd /front
 npm run build
 ```
+### memo
+コード整形
+```
+./front/node_modules/.bin/prettier "./front/src/**/*.ts*" --write
+```
 
 # 全般
 1. dockerビルド&立ち上げ

@@ -1,3 +1,5 @@
-FROM httpd:2.4
+FROM php:7.0-apache
+
+RUN a2enmod rewrite
 
 EXPOSE 80
