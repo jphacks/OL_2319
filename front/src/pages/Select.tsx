@@ -1,57 +1,9 @@
 import { Header } from "../components";
 import { ChannelCard } from "../components";
-import { Channel } from "../types";
+import { Channel, Tag } from "../types";
 import { ChannelEntryModal } from "../components";
-
-const dummyTags = [
-  {
-    id: 1,
-    name: "JavaScript",
-  },
-  {
-    id: 2,
-    name: "C言語",
-  },
-  {
-    id: 3,
-    name: "Python",
-  },
-];
-
-const dummyChannels: Channel[] = [
-  {
-    id: 1,
-    name: "チャンネル1",
-    description: "チャンネル1の説明",
-    is_anonymous: true,
-    owner_id: 1,
-    tags: dummyTags,
-  },
-  {
-    id: 2,
-    name: "チャンネル2",
-    description: "チャンネル2の説明",
-    is_anonymous: false,
-    owner_id: 1,
-    tags: dummyTags,
-  },
-  {
-    id: 3,
-    name: "チャンネル3",
-    description: "チャンネル3の説明",
-    is_anonymous: false,
-    owner_id: 1,
-    tags: dummyTags,
-  },
-  {
-    id: 4,
-    name: "チャンネル4",
-    description: "チャンネル4の説明",
-    is_anonymous: false,
-    owner_id: 1,
-    tags: dummyTags,
-  },
-];
+import { dummyTags } from "../types";
+import { dummyChannels } from "../types";
 
 export const Select = () => {
   return (
@@ -63,7 +15,7 @@ export const Select = () => {
             <option selected disabled className="d-none">
               タグ選択
             </option>
-            {dummyTags.map((tag) => (
+            {dummyTags.map((tag: Tag) => (
               <option value={tag.id} key={tag.id}>
                 {tag.name}
               </option>
@@ -78,7 +30,7 @@ export const Select = () => {
             </div>
           </div>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 gy-3 mt-5">
-            {dummyChannels.map((channel) => (
+            {dummyChannels.map((channel: Channel) => (
               <div
                 className="col user-select-none"
                 key={channel.id}
