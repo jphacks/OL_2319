@@ -13,7 +13,7 @@ export type ChannelUpdate = {
   name: string | null;
   description: string | null;
   tags: Tag[] | null;
-}
+};
 
 export const dummyChannels: Channel[] = [
   {
