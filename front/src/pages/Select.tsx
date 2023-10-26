@@ -4,14 +4,21 @@ import { Channel, Tag } from "../types";
 import { ChannelEntryModal } from "../components";
 import { dummyTags } from "../types";
 import { dummyChannels } from "../types";
+import { useState } from "react";
 
 export const Select = () => {
+  const [selectedTag, setSelectedTag] = useState<string>("タグ選択");
   return (
     <>
       <Header />
       <div className="container">
         <div className="tag-select">
-          <select className="form-select my-8 w-auto" aria-label="tag select">
+          <select
+            className="form-select my-8 w-auto"
+            aria-label="tag select"
+            value={selectedTag}
+            onChange={(e) => setSelectedTag(e.target.value)}
+          >
             <option selected disabled className="d-none">
               タグ選択
             </option>
@@ -52,7 +59,7 @@ export const Select = () => {
                 data-bs-toggle="modal"
                 data-bs-target={`#modal-chennel-${channel.id}`}
               >
-                <ChannelCard channel={channel} />
+                <ChannelCard channel={channel} selectedTag={selectedTag} />
               </div>
             ))}
           </div>
