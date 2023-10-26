@@ -60,19 +60,16 @@ $message-send-input-height: 38px;
 .channel-left-bar {
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
 
-  .user-avater img {
-    border-radius: 50%;
-  }
-
+  
   z-index: 1;
+}
+
+.user-avater img {
+  border-radius: 50%;
 }
 
 .channel-right-bar {
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
-
-  .user-avater img {
-    border-radius: 50%;
-  }
   
   z-index: 1;
 }

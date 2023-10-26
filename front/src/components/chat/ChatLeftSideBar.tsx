@@ -13,7 +13,11 @@ export const ChatLeftSideBar = (props: { className?: string }) => {
         >
           <img src="/arrow-back.svg" alt="back" width={40} />
         </button>
-        <div className="user-avater mt-7">
+        <div
+          className="user-avater mt-7"
+          data-bs-toggle="modal"
+          data-bs-target="#modal-user-settings"
+        >
           <img src="http://placekitten.com/200" alt="user avater" width={150} />
         </div>
         <div className="bg-white mt-7 rounded">

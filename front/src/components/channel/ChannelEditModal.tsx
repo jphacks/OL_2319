@@ -14,9 +14,14 @@ export const ChannelEditModal = (props: { className?: string }) => {
   const ModalContent = () => (
     <>
       <div className={className}>
-        <div className="channel-title fs-4 fw-bold mb-3 lh-base">チャンネル設定</div>
+        <div className="channel-title fs-4 fw-bold mb-3 lh-base">
+          チャンネル設定
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="ms-0">
-          <label htmlFor="channel-name" className="form-label fw-medium mb-3 fs-5 lh-base">
+          <label
+            htmlFor="channel-name"
+            className="form-label fw-medium mb-3 fs-5 lh-base"
+          >
             チャンネル名
           </label>
           <input

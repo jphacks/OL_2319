@@ -3,7 +3,6 @@ body {
   font-family: "Noto Sans JP", serif !important;
   font-size: 1.25rem;
   color: #495057;
-  line-height: 1;
   letter-spacing: 1px;
   background-color: #f8f9fa;
 }
@@ -30,4 +29,9 @@ button.btn-outline-dark {
 button {
   border: none;
   background-color: inherit;
+  line-height: 1;
+}
+
+.btn {
+  font-size: 1.25rem;
 }

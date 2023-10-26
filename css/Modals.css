@@ -1,0 +1,6 @@
+.user-settings-right div {
+  cursor: pointer;
+}
+.user-settings-right div:hover {
+  opacity: 0.8;
+}

@@ -22,7 +22,9 @@ export const Chat = (props: { className?: string; chat: ChatLog }) => {
               </div>
             )}
           </div>
-          <div className="chat-content mt-2 ms-2">{chat.content}</div>
+          <div className="chat-content mt-2 ms-2 fs-6 fw-medium">
+            {chat.content}
+          </div>
         </div>
       </div>
     </>

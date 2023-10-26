@@ -6,7 +6,6 @@ body {
   font-family: "Noto Sans JP", serif !important;
   font-size: 1.25rem;
   color: $gray-700;
-  line-height: 1;
   letter-spacing: 1px;
   background-color: $gray-100;
 }
@@ -33,4 +32,9 @@ button {
 button {
   border: none;
   background-color: inherit;
+  line-height: 1;
+}
+
+.btn {
+  font-size: 1.25rem;
 }

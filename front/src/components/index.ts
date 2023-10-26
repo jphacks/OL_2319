@@ -4,3 +4,4 @@ export { ChannelEntryModal } from "./ChannelEntryModal";
 export * from "./form";
 export * from "./channel";
 export * from "./chat";
+export * from "./user-settings";

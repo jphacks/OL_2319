@@ -1,5 +1,6 @@
 import "../styles/Header.scss";
 import { Link } from "react-router-dom";
+import { UserSettingsModal } from ".";
 
 export const Header = () => {
   return (
@@ -38,6 +39,7 @@ export const Header = () => {
           </div>
         </div>
       </div>
+      <UserSettingsModal />
     </div>
   );
 };
