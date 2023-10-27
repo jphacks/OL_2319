@@ -16,6 +16,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def login
+    user = User.find_by(email: params[:email].downcase)
+    if user && user.authenticate(params[:password])
+      # ログイン成功
+      render json: { message: 'Login successful' }, status: :ok
+    else
+      # ログイン失敗
+      render json: { message: 'Invalid email or password' }, status: :unauthorized
+    end
+  end
 
   private
 
