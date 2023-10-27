@@ -5,14 +5,18 @@ import { useEffect, useState } from "react";
 export const AlertToast = (props: {
   alertType: "success" | "error" | undefined;
   alertStr: string;
+  setAlertType: React.Dispatch<"success" | "error" | undefined>;
 }) => {
-  const { alertType, alertStr } = props;
+  const { alertType, alertStr, setAlertType } = props;
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (alertType === undefined) return;
     setOpen(true);
-  }, [alertType]);
+    setTimeout(() => {
+      setAlertType(undefined);
+    }, 6000);
+  }, [alertType, setAlertType]);
 
   return (
     <>

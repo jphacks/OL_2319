@@ -1,14 +1,31 @@
 import { useForm } from "react-hook-form";
 import { InputMailAddress, InputPassword } from "../components";
 import { SubmitHandler, FieldValues } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { AlertToast } from "../components";
+import { useEffect, useState } from "react";
 import "../styles/Form.scss";
 
 export const Login = () => {
+  const [alertType, setAlertType] = useState<"success" | "error" | undefined>(
+    undefined,
+  );
+  const [alertStr, setAlertStr] = useState<string>("");
   const { register, handleSubmit } = useForm();
   const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
   // TODO: ログイン機能実装
   // TODO: ユーザーフォームのバリデーションエラー表示
+  const [searchParams, setSearchParams] = useSearchParams();
+  let isLoaded = false;
+  useEffect(() => {
+    if (isLoaded) return;
+    if (searchParams.get("prev") === "signup") {
+      setAlertStr("ユーザー登録が完了しました。");
+      setAlertType("success");
+      setSearchParams({});
+    }
+    isLoaded = true;
+  }, []);
 
   return (
     <>
@@ -25,6 +42,11 @@ export const Login = () => {
           ログイン
         </button>
       </form>
+      <AlertToast
+        alertType={alertType}
+        alertStr={alertStr}
+        setAlertType={setAlertType}
+      />
     </>
   );
 };

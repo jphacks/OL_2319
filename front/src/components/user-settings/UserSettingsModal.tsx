@@ -52,7 +52,11 @@ export const UserSettingsModal = (props: { className?: string }) => {
   return (
     <>
       <ModalBase children={<ModalContent />} id={`modal-user-settings`} />
-      <AlertToast alertType={alertType} alertStr={alertStr} />
+      <AlertToast
+        alertType={alertType}
+        alertStr={alertStr}
+        setAlertType={setAlertType}
+      />
     </>
   );
 };
