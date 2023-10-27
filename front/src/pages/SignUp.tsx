@@ -5,29 +5,35 @@ import {
   InputPasswordConfirm,
   InputUserName,
   CheckboxTags,
+  AlertToast,
 } from "../components";
 import { SubmitHandler, FieldValues } from "react-hook-form";
 import "../styles/Form.scss";
-import { Link } from "react-router-dom";
-
-const dummyTags = [
-  {
-    id: 1,
-    name: "JavaScript",
-  },
-  {
-    id: 2,
-    name: "C言語",
-  },
-  {
-    id: 3,
-    name: "Python",
-  },
-];
+import { Link, useNavigate } from "react-router-dom";
+import { dummyTags } from "../types";
+import { api } from "../utils";
+import { useState } from "react";
 
 export const SignUp = () => {
   const { register, handleSubmit, watch } = useForm();
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+  const [alertType, setAlertType] = useState<"success" | "error" | undefined>(
+    undefined,
+  );
+  const [alertStr, setAlertStr] = useState<string>("");
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    api
+      .post("/users/signup", data)
+      .then(() => {
+        navigate("/login?prev=signup");
+      })
+      .catch(() => {
+        console.log("error");
+        setAlertType("error");
+        setAlertStr("ユーザー登録に失敗しました。");
+      });
+  };
 
   return (
     <>
@@ -52,6 +58,11 @@ export const SignUp = () => {
           新規登録
         </button>
       </form>
+      <AlertToast
+        alertType={alertType}
+        alertStr={alertStr}
+        setAlertType={setAlertType}
+      />
     </>
   );
 };

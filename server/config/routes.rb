@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   get 'server/tag/get-all' => 'tag#get_all'
   post 'server/tag/update' => 'tag#update'
 
-  get '/users/signup', to: "users/#new"
+  post '/server/users/signup', to: "users#create"
   post '/server/users/login', to: 'users#login'
 end

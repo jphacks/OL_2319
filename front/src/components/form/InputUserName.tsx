@@ -16,7 +16,7 @@ export const InputUserName = (props: {
           type="text"
           id="user-name"
           className="form-control form-control-lg"
-          {...register("userName", { required: true })}
+          {...register("name", { required: true })}
         />
       </div>
     </>
