@@ -10,7 +10,4 @@ Rails.application.routes.draw do
   # channel
   post "server/channels/create" => "channels#create"
   delete "server/channels/delete/:id" => "channels#delete"
-
-
 end
-

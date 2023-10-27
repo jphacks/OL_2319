@@ -8,7 +8,7 @@ class TagRelController < ApplicationController
     if @tag_rel.save
       render json: { status: 201 }
     else
-      render json: { status: 200 }
+      render json: { status: 422 }
     end
   end
 end
