@@ -8,8 +8,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if user.save
+    @user = User.new(name: params[:name], email: params[:email], password: params[:password], is_deleted: false)
+    if @user.save
       render status: 201
     else
       render json: { errors: "failed to create your account" }, status: :unprocessable_entity
