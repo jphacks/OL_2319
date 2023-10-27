@@ -2,6 +2,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { HandlePage } from "./UserSettingsModal";
 import { CheckboxTags } from "..";
 import { dummyTags } from "../../types";
+import { api } from "../../utils"
 
 export const CreateChannel = (props: {
   className?: string;
@@ -11,8 +12,13 @@ export const CreateChannel = (props: {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    handlePage("top");
+    api.post("/channels/create", {...data, owner_id: 1, is_anonymous: false})
+      .catch((e) => {
+        console.log(e);
+      })
+      .then(() => {
+        handlePage("top");
+      })
   };
 
   return (
