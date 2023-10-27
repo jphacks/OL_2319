@@ -1,18 +1,31 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { HandlePage } from "./UserSettingsModal";
-import { CheckboxTags } from "..";
+import { AlertProps, CheckboxTags } from "..";
 import { dummyTags } from "../../types";
+import { api } from "../../utils";
 
 export const CreateChannel = (props: {
   className?: string;
   handlePage: HandlePage;
+  alertProps: AlertProps;
 }) => {
-  const { className, handlePage } = props;
+  const { className, handlePage, alertProps } = props;
+  const { setAlertStr, setAlertType } = alertProps;
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    handlePage("top");
+    api
+      .post("/channels/create", { ...data, owner_id: 1, is_anonymous: false })
+      .then(() => {
+        handlePage("top");
+        setAlertStr("チャンネルを作成しました");
+        setAlertType("success");
+      })
+      .catch((e) => {
+        console.log(e);
+        setAlertStr("チャンネルの作成に失敗しました");
+        setAlertType("error");
+      });
   };
 
   return (
