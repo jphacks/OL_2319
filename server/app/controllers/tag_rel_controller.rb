@@ -1,14 +1,14 @@
 class TagRelController < ApplicationController
   def create
-    @tag_rel = ChannelTagRel.new(
+    @channel_tag_rel = ChannelTagRel.new(
       channel_id: params[:channel_id],
       tag_id: params[:tag_id]
     )
     
-    if @tag_rel.save
-      render json: { status: 201 }
+    if @channel_tag_rel.save
+      render json: @channel_tag_rel, status: 200
     else
-      render json: { status: 422 }
+      render status: 422
     end
   end
 end
