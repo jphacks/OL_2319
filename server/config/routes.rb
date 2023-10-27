@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get 'server/channels/get-by-tag' => 'channels#get_by_tag'
   
   # chat
-  post "server/chat/create" => "chat#create"
+  post 'server/chats/create' => 'chat#create'
+  get 'server/chats/:channel_id' => 'chat#get_all'
   
   # tag_rel
   post 'server/tag-rel/create' => 'tag_rel#create'
