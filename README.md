@@ -10,6 +10,9 @@ docker exec ol_2319_pre-web-1 rails db:migrate
 ```
 
 # フロント側
+0. 環境ファイル作成(初回のみ)  
+```.env.example```のコピーを作成して```.env```ファイルとして保存  
+```.env```内の必要情報を記述  
 1. パッケージインストール
 ```
 cd /front
