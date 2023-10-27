@@ -9,9 +9,9 @@ class ChatController < ApplicationController
     )
     
     if @chat.save
-      render json: { status: 201 }
+      render json: @chat, status: 200
     else
-      render json: { status: 200 }
+      render status: 200
     end
   end
 end
