@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   match '*path' => 'options_request#response_preflight_request', via: :options
   
   # channel
-  post "server/channels/create" => "channels#create"
-  delete "server/channels/delete/:id" => "channels#delete"
+  post 'server/channels/create' => 'channels#create'
+  delete 'server/channels/delete/:id' => 'channels#delete'
+  get 'server/channels/get-all' => 'channels#get_all'
   
   # tag_rel
   post 'server/tag-rel/create' => 'tag_rel#create'
