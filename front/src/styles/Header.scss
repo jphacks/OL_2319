@@ -1,0 +1,16 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+.header {
+  background-color: $gray-700;
+  .signup button {
+    color: $gray-700;
+  }
+}
+
+.hero-image {
+  background-color: $gray-100;
+  button {
+    background-color: $gray-700;
+  }
+}

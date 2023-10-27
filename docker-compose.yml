@@ -22,7 +22,7 @@ services:
   frontend:
     build: ./front
     volumes:
-      - ./front/dist:/usr/local/apache2/htdocs
+      - ./front/dist:/var/www/html
     ports:
       - "80:80"
 
