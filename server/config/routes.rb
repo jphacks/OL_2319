@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'server/channels/create' => 'channels#create'
   delete 'server/channels/delete/:id' => 'channels#delete'
   get 'server/channels/get-all' => 'channels#get_all'
+  get 'server/channels/get-by-tag' => 'channels#get_by_tag'
   
   # tag_rel
   post 'server/tag-rel/create' => 'tag_rel#create'
