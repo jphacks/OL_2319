@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  match '*path' => 'options_request#response_preflight_request', via: :options
+  
   # channel
   post "server/channels/create" => "channels#create"
   delete "server/channels/delete/:id" => "channels#delete"
