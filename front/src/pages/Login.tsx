@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import { InputMailAddress, InputPassword } from "../components";
 import { SubmitHandler, FieldValues } from "react-hook-form";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { AlertToast } from "../components";
 import { useEffect, useState } from "react";
 import "../styles/Form.scss";
+import { api } from "../utils";
 
 export const Login = () => {
   const [alertType, setAlertType] = useState<"success" | "error" | undefined>(
@@ -12,7 +13,16 @@ export const Login = () => {
   );
   const [alertStr, setAlertStr] = useState<string>("");
   const { register, handleSubmit } = useForm();
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+  const navigate = useNavigate();
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    api.post("/users/login", data).then(() => {
+      navigate("/select?prev=login");
+    }
+    ).catch(() => {
+      setAlertType("error");
+      setAlertStr("ログインに失敗しました。");
+    });
+  }
   // TODO: ログイン機能実装
   // TODO: ユーザーフォームのバリデーションエラー表示
   const [searchParams, setSearchParams] = useSearchParams();

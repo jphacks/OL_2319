@@ -1,13 +1,31 @@
-import { Header } from "../components";
+import { AlertToast, Header } from "../components";
 import { ChannelCard } from "../components";
 import { Channel, Tag } from "../types";
 import { ChannelEntryModal } from "../components";
 import { dummyTags } from "../types";
 import { dummyChannels } from "../types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export const Select = () => {
   const [selectedTag, setSelectedTag] = useState<string>("タグ選択");
+  const [alertType, setAlertType] = useState<"success" | "error" | undefined>(
+    undefined,
+  );
+  const [alertStr, setAlertStr] = useState<string>("");
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  let isLoaded = false;
+  useEffect(() => {
+    if (isLoaded) return;
+    if (searchParams.get("prev") === "login") {
+      setAlertStr("ログインが完了しました。");
+      setAlertType("success");
+      setSearchParams({});
+    }
+    isLoaded = true;
+  }, []);
+
   return (
     <>
       <Header />
@@ -71,6 +89,7 @@ export const Select = () => {
           <ChannelEntryModal channel={channel} key={channel.id} />
         ))
       }
+      <AlertToast alertType={alertType} alertStr={alertStr} setAlertType={setAlertType} />
     </>
   );
 };
