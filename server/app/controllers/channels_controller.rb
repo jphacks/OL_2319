@@ -4,7 +4,7 @@ class ChannelsController < ApplicationController
     if @channel.save
       render json: { status: 201, owner_id: @channel.owner_id }
     else
-      render json: { status: 200 }
+      render json: { status: 422 }
     end
   end
 
