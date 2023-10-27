@@ -1,0 +1,14 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$primary-light: #FFEBAE;
+
+form {
+  .select-tags{
+    button {
+      color: $gray-600;
+      background-color: $primary-light;
+      border-color: $gray-600;
+    }
+  }
+}
