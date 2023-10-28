@@ -13,7 +13,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/select" element={<Select />} />
-          <Route path="/channel/:chennelId" element={<Channel />} />
+          <Route path="/channel/:channelId" element={<Channel />} />
           <Route path="/group" element={<Group />} />
           <Route path="/*" element={<Top />} />
         </Routes>

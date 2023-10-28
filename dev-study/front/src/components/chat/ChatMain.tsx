@@ -1,198 +1,33 @@
 import "../../styles/Chat.scss";
-import { ChatLog } from "../../types";
+import { ChatLog, ChatLogResponse } from "../../types";
 import dayjs from "dayjs";
 import { Chat } from "../chat";
 import { ChatMessageInput } from "./_ChatMessageInput";
 import { useEffect } from "react";
-
-const dummyChats: ChatLog[] = [
-  {
-    id: 1,
-    user_id: 1,
-    name: "ユーザー1",
-    content: "こんにちは",
-    timestamp: dayjs("2023-10-23 12:34:56"),
-    reply_to: null,
-    is_question: false,
-  },
-  {
-    id: 2,
-    user_id: 2,
-    name: "ユーザー2",
-    content: "おはようございます",
-    timestamp: dayjs("2023-10-24 12:34:56"),
-    reply_to: 1,
-    is_question: false,
-  },
-  {
-    id: 3,
-    user_id: 3,
-    name: "ユーザー1",
-    content: "今日の天気はどうですか？",
-    timestamp: dayjs("2023-10-25 12:34:54"),
-    reply_to: null,
-    is_question: true,
-  },
-  {
-    id: 4,
-    user_id: 1,
-    name: "ユーザー2",
-    content: "晴れですよ",
-    timestamp: dayjs("2023-10-25 12:34:56"),
-    reply_to: 3,
-    is_question: false,
-  },
-  {
-    id: 1,
-    user_id: 1,
-    name: "ユーザー1",
-    content: "こんにちは",
-    timestamp: dayjs("2023-10-23 12:34:56"),
-    reply_to: null,
-    is_question: false,
-  },
-  {
-    id: 2,
-    user_id: 2,
-    name: "ユーザー2",
-    content: "おはようございます",
-    timestamp: dayjs("2023-10-24 12:34:56"),
-    reply_to: 1,
-    is_question: false,
-  },
-  {
-    id: 3,
-    user_id: 3,
-    name: "ユーザー1",
-    content: "今日の天気はどうですか？",
-    timestamp: dayjs("2023-10-25 12:34:54"),
-    reply_to: null,
-    is_question: true,
-  },
-  {
-    id: 4,
-    user_id: 1,
-    name: "ユーザー2",
-    content: "晴れですよ",
-    timestamp: dayjs("2023-10-25 12:34:56"),
-    reply_to: 3,
-    is_question: false,
-  },
-  {
-    id: 1,
-    user_id: 1,
-    name: "ユーザー1",
-    content: "こんにちは",
-    timestamp: dayjs("2023-10-23 12:34:56"),
-    reply_to: null,
-    is_question: false,
-  },
-  {
-    id: 2,
-    user_id: 2,
-    name: "ユーザー2",
-    content: "おはようございます",
-    timestamp: dayjs("2023-10-24 12:34:56"),
-    reply_to: 1,
-    is_question: false,
-  },
-  {
-    id: 3,
-    user_id: 3,
-    name: "ユーザー1",
-    content: "今日の天気はどうですか？",
-    timestamp: dayjs("2023-10-25 12:34:54"),
-    reply_to: null,
-    is_question: true,
-  },
-  {
-    id: 4,
-    user_id: 1,
-    name: "ユーザー2",
-    content: "晴れですよ",
-    timestamp: dayjs("2023-10-25 12:34:56"),
-    reply_to: 3,
-    is_question: false,
-  },
-  {
-    id: 1,
-    user_id: 1,
-    name: "ユーザー1",
-    content: "こんにちは",
-    timestamp: dayjs("2023-10-23 12:34:56"),
-    reply_to: null,
-    is_question: false,
-  },
-  {
-    id: 2,
-    user_id: 2,
-    name: "ユーザー2",
-    content: "おはようございます",
-    timestamp: dayjs("2023-10-24 12:34:56"),
-    reply_to: 1,
-    is_question: false,
-  },
-  {
-    id: 3,
-    user_id: 3,
-    name: "ユーザー1",
-    content: "今日の天気はどうですか？",
-    timestamp: dayjs("2023-10-25 12:34:54"),
-    reply_to: null,
-    is_question: true,
-  },
-  {
-    id: 4,
-    user_id: 1,
-    name: "ユーザー2",
-    content: "晴れですよ",
-    timestamp: dayjs("2023-10-25 12:34:56"),
-    reply_to: 3,
-    is_question: false,
-  },
-  {
-    id: 1,
-    user_id: 1,
-    name: "ユーザー1",
-    content: "こんにちは",
-    timestamp: dayjs("2023-10-23 12:34:56"),
-    reply_to: null,
-    is_question: false,
-  },
-  {
-    id: 2,
-    user_id: 2,
-    name: "ユーザー2",
-    content: "おはようございます",
-    timestamp: dayjs("2023-10-24 12:34:56"),
-    reply_to: 1,
-    is_question: false,
-  },
-  {
-    id: 3,
-    user_id: 3,
-    name: "ユーザー1",
-    content: "今日の天気はどうですか？",
-    timestamp: dayjs("2023-10-25 12:34:54"),
-    reply_to: null,
-    is_question: true,
-  },
-  {
-    id: 4,
-    user_id: 1,
-    name: "ユーザー2",
-    content: "晴れですよ",
-    timestamp: dayjs("2023-10-25 12:34:56"),
-    reply_to: null,
-    is_question: false,
-  },
-];
+import { api } from "../../utils";
+import { useState } from "react";
 
 export const ChatMain = (props: { className?: string; channelId: number }) => {
   const { className, channelId } = props;
+  const [chatLogs, setChatLogs] = useState<ChatLog[]>([]);
+
   useEffect(() => {
-    console.log(channelId);
+    api
+      .get(`/chats/${channelId}`)
+      .then((res) => {
+        const data = res.data.chats;
+        setChatLogs(
+          data.map((chat: ChatLogResponse) => ({
+            ...chat,
+            timestamp: dayjs(chat.created_at),
+          })),
+        );
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, [channelId]);
+
   return (
     <>
       <div
@@ -216,11 +51,14 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
           </button>
         </div>
         <div className="chat-window mt-auto">
-          {dummyChats.map((chat, i) => (
+          {chatLogs.map((chat, i) => (
             <Chat key={i} chat={chat} className="py-3 px-5" />
           ))}
         </div>
         <ChatMessageInput className="px-5 my-4" />
+        <button type="button" onClick={() => console.log("chats", chatLogs)}>
+          デバッグ
+        </button>
       </div>
     </>
   );
