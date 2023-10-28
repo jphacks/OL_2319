@@ -11,7 +11,7 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
   const { className, channelId } = props;
   const [chatLogs, setChatLogs] = useState<ChatLog[]>([]);
 
-  useEffect(() => {
+  const fetchChat = () => {
     api
       .get(`/chats/${channelId}`)
       .then((res) => {
@@ -26,7 +26,17 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
       .catch((e) => {
         console.log(e);
       });
-  }, [channelId]);
+  }
+
+  useEffect(() => {
+    fetchChat();
+    const intervalId = setInterval(() => {
+      fetchChat();
+    }, 5000);
+    return () => clearInterval(intervalId);
+    // eslint-disable-next-line
+  }, []);
+
 
   return (
     <>

@@ -27,7 +27,7 @@ export const Select = () => {
     }
     // チャンネル一覧取得
     api
-      .get("/channels/get-all/")
+      .get("/channels/get-all")
       .then((res) => {
         if (res.data.tags === undefined) return;
         const data = res.data.tags;
