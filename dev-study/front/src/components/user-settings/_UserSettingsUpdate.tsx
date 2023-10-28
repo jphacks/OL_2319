@@ -1,6 +1,8 @@
 import { useForm, UseFormHandleSubmit, FieldValues } from "react-hook-form";
 import { HandlePage } from "./UserSettingsModal";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import { api } from "../../utils";
+import { AlertToast } from "../AlertToast";
 
 export const UserSettingsUpdate = (props: {
   children: ReactNode;
@@ -8,10 +10,22 @@ export const UserSettingsUpdate = (props: {
   handlePage: HandlePage;
 }) => {
   const { children, handleSubmit, handlePage } = props;
+  const [alertType, setAlertType] = useState<"success" | "error" | undefined>(
+    undefined,
+  );
+  const [alertStr, setAlertStr] = useState<string>("");
 
   const onSubmit = (data: FieldValues) => {
     console.log(data);
-    handlePage("top");
+    api
+      .post("/users/update", { ...data, id: localStorage.getItem("user_id") })
+      .then(() => {
+        handlePage("top");
+      })
+      .catch(() => {
+        setAlertStr("変更に失敗しました。");
+        setAlertType("error");
+      });
   };
 
   return (
@@ -35,6 +49,11 @@ export const UserSettingsUpdate = (props: {
             </button>
           </div>
         </form>
+        <AlertToast
+          alertType={alertType}
+          alertStr={alertStr}
+          setAlertType={setAlertType}
+        />
       </div>
     </>
   );

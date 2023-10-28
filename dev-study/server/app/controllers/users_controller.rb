@@ -9,7 +9,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(name: params[:name], email: params[:email], password: params[:password], is_deleted: false)
+    default_icon = "public/server/user_icon/default/default_user_#{rand(1..6)}.png"
     if @user.save
+      File.binwrite("public/server/user_icon/#{@user.id}.png", File.binread(default_icon))
       render status: 201
     else
       render json: { errors: "failed to create your account" }, status: :unprocessable_entity
@@ -18,7 +20,19 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.icon = params[:icon]
+    if params[:name]
+      @user.name = params[:name]
+    end
+    if params[:email]
+      @user.email = params[:email]
+    end
+    if params[:password]
+      @user.password = params[:password]
+    end
+    if params[:icon]
+      icon = params[:icon]
+      File.binwrite("public/server/user_icon/#{params[:id]}.png", icon.read)
+    end
     if @user.save
       render status: 200
     else

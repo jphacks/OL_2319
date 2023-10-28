@@ -1,5 +1,8 @@
+import { apiEndpoint } from "../../utils";
+
 export const ChatLeftSideBar = (props: { className?: string }) => {
   const { className } = props;
+  const timestamp = new Date().getTime();
   return (
     <>
       <div
@@ -18,7 +21,13 @@ export const ChatLeftSideBar = (props: { className?: string }) => {
           data-bs-toggle="modal"
           data-bs-target="#modal-user-settings"
         >
-          <img src="http://placekitten.com/200" alt="user avater" width={150} />
+          <img
+            src={`${apiEndpoint}/user_icon/${localStorage.getItem(
+              "user_id",
+            )}.png?t=${timestamp}`}
+            alt="user avater"
+            width={150}
+          />
         </div>
         <div className="bg-white mt-7 rounded">
           <button
