@@ -1,4 +1,4 @@
 class ChannelTagRel < ApplicationRecord
     has_many :channels
-    has_many :tags
+    belongs_to :tag
 end
