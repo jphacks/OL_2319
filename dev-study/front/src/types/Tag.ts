@@ -6,14 +6,14 @@ export type Tag = {
 export const dummyTags = [
   {
     id: 1,
-    name: "JavaScript",
+    name: "tag1",
   },
   {
     id: 2,
-    name: "C言語",
+    name: "tag2",
   },
   {
     id: 3,
-    name: "Python",
+    name: "tag3",
   },
 ];
