@@ -17,7 +17,8 @@ export const Login = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     api
       .post("/users/login", data)
-      .then(() => {
+      .then((res) => {
+        localStorage.setItem("user_id", res.data.id);
         navigate("/select?prev=login");
       })
       .catch(() => {
