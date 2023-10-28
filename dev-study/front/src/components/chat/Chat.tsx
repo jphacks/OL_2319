@@ -12,7 +12,7 @@ export const Chat = (props: { className?: string; chat: ChatLog }) => {
         </div>
         <div>
           <div className="d-flex align-items-center">
-            <div className="chat-user ms-2 fw-bold fs-6">{chat.name}</div>
+            <div className="chat-user ms-2 fw-bold fs-6">{chat.user_name}</div>
             <div className="chat-timestamp ms-2">
               {chat.timestamp.format("HH:mm")}
             </div>

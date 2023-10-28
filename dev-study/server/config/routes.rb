@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   post 'server/tag/update' => 'tag#update'
   
   # signup
-  post '/server/users/signup', to: "users#create"
+  post '/server/users/signup', to: 'users#create'
+  post '/server/users/update', to: 'users#update'
 
   # login
   post '/server/users/login', to: 'users#login'

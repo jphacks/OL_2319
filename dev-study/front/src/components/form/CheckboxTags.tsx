@@ -1,13 +1,27 @@
 import { UseFormRegister } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
 import { Tag } from "../../types";
+import { useEffect, useState } from "react";
+import { api } from "../../utils";
 
 export const CheckboxTags = (props: {
   register: UseFormRegister<FieldValues>;
-  tags: Tag[];
   className?: string;
 }) => {
-  const { register, tags, className } = props;
+  const { register, className } = props;
+  const [ tags, setTags ] = useState<Tag[]>([]);
+
+  useEffect(() => {
+    api
+      .get("/tag/get-all")
+      .then((res) => {
+        setTags(res.data.tags as Tag[]);
+      })
+      .catch(() => {
+        console.log("タグの取得に失敗しました。");
+      });
+  }, []);
+
 
   const divider = (i: number) => (
     <li key={`divider${i}`}>

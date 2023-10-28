@@ -2,7 +2,6 @@ import { AlertToast, Header } from "../components";
 import { ChannelCard } from "../components";
 import { Channel, Tag } from "../types";
 import { ChannelEntryModal } from "../components";
-import { dummyTags } from "../types";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { api } from "../utils";
@@ -29,11 +28,8 @@ export const Select = () => {
     api
       .get("/channels/get-all")
       .then((res) => {
-        const data = res.data.tags;
-        const tagedData = data.map((channel: Channel) => {
-          return { ...channel, tags: dummyTags } as Channel;
-        });
-        setChannels(tagedData);
+        if (res.data.channels === undefined) return;
+        setChannels(res.data.channels);
       })
       .catch(() => {
         setAlertStr("チャンネルの取得に失敗しました。");

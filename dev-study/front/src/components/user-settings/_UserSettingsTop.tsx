@@ -5,6 +5,7 @@ export const UserSettingsTop = (props: {
   handlePage: HandlePage;
 }) => {
   const { className, handlePage } = props;
+
   return (
     <>
       <div className="btn-close ms-auto" data-bs-dismiss="modal"></div>
@@ -67,7 +68,11 @@ export const UserSettingsTop = (props: {
           <hr className="w-100" />
           <div
             className="fs-4 fw-medium text-danger"
-            onClick={() => handlePage("logout")}
+            data-bs-dismiss="modal"
+            onClick={() => {
+              localStorage.removeItem("user_id");
+              window.location.href = "/";
+            }}
           >
             ログアウト
           </div>

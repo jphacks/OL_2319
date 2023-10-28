@@ -10,7 +10,6 @@ import {
 import { SubmitHandler, FieldValues } from "react-hook-form";
 import "../styles/Form.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { dummyTags } from "../types";
 import { api } from "../utils";
 import { useState } from "react";
 
@@ -50,7 +49,7 @@ export const SignUp = () => {
           className="mt-4"
         />
         <InputUserName register={register} className="mt-4" />
-        <CheckboxTags register={register} tags={dummyTags} className="mt-4" />
+        <CheckboxTags register={register} className="mt-4" />
         <button
           type="submit"
           className="btn btn-primary text-white fw-semibold w-100 fs-5 mt-8 px-4 py-3 lh-1"

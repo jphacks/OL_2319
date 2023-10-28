@@ -6,7 +6,7 @@ docker-compose run web rails new . --skip-git --api --force --database=postgresq
 ```
 1. データベースマイグレーション(DB更新時)
 ```
-docker exec ol_2319_pre-web-1 rails db:migrate
+docker exec dev-study-web-1 rails db:migrate
 ```
 
 # フロント側
