@@ -16,6 +16,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+    @user.icon = params[:icon]
+    if @user.save
+      render status: 200
+    else
+      render status: 422
+    end
+  end
+
   def login
     user = User.find_by(email: params[:email].downcase)
     if user && user.authenticate(params[:password])
