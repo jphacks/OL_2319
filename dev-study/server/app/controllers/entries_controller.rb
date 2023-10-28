@@ -35,7 +35,15 @@ class EntriesController < ApplicationController
 
     def active_entries
       @entries = Entry.where(exit_at: nil, channel_id: params[:channel_id])
-      render json: @entries
+      response = @entries.map do |entry|
+        {
+          id: entry.id,
+          user_id: entry.user_id,
+          entry_at: entry.entry_at,
+          user_name: entry.user.name,
+        }
+      end
+      render json: response, status: :ok
     end
 
     private
