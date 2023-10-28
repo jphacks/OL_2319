@@ -1,12 +1,10 @@
 import { HandlePage } from "./UserSettingsModal";
-import { useNavigate } from "react-router-dom";
 
 export const UserSettingsTop = (props: {
   className?: string;
   handlePage: HandlePage;
 }) => {
   const { className, handlePage } = props;
-  const navigate = useNavigate();
 
   return (
     <>
@@ -73,7 +71,7 @@ export const UserSettingsTop = (props: {
             data-bs-dismiss="modal"
             onClick={() => {
               localStorage.removeItem("user_id");
-              navigate("/");
+              window.location.href = "/";
             }}
           >
             ログアウト
