@@ -30,20 +30,21 @@ class ChannelsController < ApplicationController
 
   def get_all
     @channels = Channel.all.includes(:tags)
-    
+
     response_data = @channels.map do |channel|
       {
         id: channel.id,
         name: channel.name,
+        description: channel.description,
         owner_id: channel.owner_id,
         is_anonymous: channel.is_anonymous,
         tags: channel.tags # タグ名のリストを取得
       }
     end
-  
+
     render json: { channels: response_data }, status: 200
   end
-  
+
 
   def get_by_tag
     keyword = params[:tag_name]
