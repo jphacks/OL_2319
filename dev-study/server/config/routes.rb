@@ -18,7 +18,16 @@ Rails.application.routes.draw do
   post 'server/tag/create' => 'tag#create'
   get 'server/tag/get-all' => 'tag#get_all'
   post 'server/tag/update' => 'tag#update'
-
+  
+  # signup
   post '/server/users/signup', to: "users#create"
+
+  # login
   post '/server/users/login', to: 'users#login'
+
+  # entry
+  scope '/server' do
+    resources :entries, except: [:new, :edit]
+  end
+
 end
