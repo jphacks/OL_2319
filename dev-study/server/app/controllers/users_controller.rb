@@ -20,7 +20,19 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.icon = params[:icon]
+    if params[:name]
+      @user.name = params[:name]
+    end
+    if params[:email]
+      @user.email = params[:email]
+    end
+    if params[:password]
+      @user.password = params[:password]
+    end
+    if params[:icon]
+      icon = params[:icon]
+      File.binwrite("public/server/user_icon/#{params[:id]}.png", icon.read)
+    end
     if @user.save
       render status: 200
     else
