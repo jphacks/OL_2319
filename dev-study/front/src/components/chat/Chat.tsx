@@ -1,4 +1,5 @@
 import { ChatLog } from "../../types";
+import { apiEndpoint } from "../../utils";
 
 export const Chat = (props: { className?: string; chat: ChatLog }) => {
   const { className, chat } = props;
@@ -8,7 +9,7 @@ export const Chat = (props: { className?: string; chat: ChatLog }) => {
         className={`d-flex ${className} ${chat.is_question ? "question" : ""}`}
       >
         <div className="chat-avater">
-          <img src="http://placekitten.com/200" alt="user avater" width={40} />
+          <img src={`${apiEndpoint}/user_icon/${localStorage.getItem("user_id")}.png`} alt="user avater" width={40} />
         </div>
         <div>
           <div className="d-flex align-items-center">
