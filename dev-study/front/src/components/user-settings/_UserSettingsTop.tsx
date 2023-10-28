@@ -1,10 +1,13 @@
 import { HandlePage } from "./UserSettingsModal";
+import { useNavigate } from "react-router-dom";
 
 export const UserSettingsTop = (props: {
   className?: string;
   handlePage: HandlePage;
 }) => {
   const { className, handlePage } = props;
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="btn-close ms-auto" data-bs-dismiss="modal"></div>
@@ -67,7 +70,11 @@ export const UserSettingsTop = (props: {
           <hr className="w-100" />
           <div
             className="fs-4 fw-medium text-danger"
-            onClick={() => handlePage("logout")}
+            data-bs-dismiss="modal"
+            onClick={() => {
+              localStorage.removeItem("user_id");
+              navigate("/");
+            }}
           >
             ログアウト
           </div>

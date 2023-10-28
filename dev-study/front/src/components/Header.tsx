@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { UserSettingsModal } from ".";
 
 export const Header = () => {
-  const isLogin = false;
+  const isLogin = localStorage.getItem("user_id") !== null;
   return (
     <div className="header bg-gray-700">
       <div className="container d-flex justify-content-between align-items-center py-3">
