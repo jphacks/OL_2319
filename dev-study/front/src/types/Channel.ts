@@ -22,7 +22,7 @@ export const dummyChannels: Channel[] = [
     description: "チャンネル1の説明",
     is_anonymous: true,
     owner_id: 1,
-    tags: dummyTags,
+    tags: [dummyTags[0], dummyTags[1]],
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ export const dummyChannels: Channel[] = [
     description: "チャンネル2の説明",
     is_anonymous: false,
     owner_id: 1,
-    tags: dummyTags,
+    tags: [dummyTags[0], dummyTags[2]],
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ export const dummyChannels: Channel[] = [
     description: "チャンネル3の説明",
     is_anonymous: false,
     owner_id: 1,
-    tags: dummyTags,
+    tags: [dummyTags[1], dummyTags[2]],
   },
   {
     id: 4,
@@ -46,6 +46,6 @@ export const dummyChannels: Channel[] = [
     description: "チャンネル4の説明",
     is_anonymous: false,
     owner_id: 1,
-    tags: dummyTags,
+    tags: [dummyTags[0], dummyTags[1]],
   },
 ];
