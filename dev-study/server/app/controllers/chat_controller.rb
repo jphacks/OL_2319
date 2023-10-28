@@ -21,6 +21,7 @@ class ChatController < ApplicationController
       .joins("INNER JOIN users ON chats.user_id = users.id")
       .select("users.name AS user_name, chats.*")
       .where("chats.channel_id = ?", keyword)
+      .order(id: :asc)
     render json: { chats: chats }, status: 200
   end
 end
