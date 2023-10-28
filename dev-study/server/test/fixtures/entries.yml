@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  channel_id: 
-  user_id: 
+  channel: one
+  user: one
+  entry_at: 2023-10-28 07:24:05
+  exit_at: 2023-10-28 07:24:05
 
 two:
-  channel_id: 
-  user_id: 
+  channel: two
+  user: two
+  entry_at: 2023-10-28 07:24:05
+  exit_at: 2023-10-28 07:24:05

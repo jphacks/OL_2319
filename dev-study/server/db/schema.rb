@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_27_121501) do
+ActiveRecord::Schema.define(version: 2023_10_28_072446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,10 +42,14 @@ ActiveRecord::Schema.define(version: 2023_10_27_121501) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.bigint "channel_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "channel_id"
+    t.bigint "user_id"
+    t.datetime "entry_at", null: false
+    t.datetime "exit_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_entries_on_channel_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -71,4 +75,6 @@ ActiveRecord::Schema.define(version: 2023_10_27_121501) do
     t.string "password_digest"
   end
 
+  add_foreign_key "entries", "channels"
+  add_foreign_key "entries", "users"
 end
