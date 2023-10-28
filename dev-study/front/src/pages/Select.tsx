@@ -2,7 +2,6 @@ import { AlertToast, Header } from "../components";
 import { ChannelCard } from "../components";
 import { Channel, Tag } from "../types";
 import { ChannelEntryModal } from "../components";
-import { dummyTags } from "../types";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { api } from "../utils";
