@@ -6,6 +6,7 @@ import { dummyTags } from "../types";
 import { dummyChannels } from "../types";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { api } from "../utils";
 
 export const Select = () => {
   const [selectedTag, setSelectedTag] = useState<string>("タグ選択");
@@ -13,6 +14,7 @@ export const Select = () => {
     undefined,
   );
   const [alertStr, setAlertStr] = useState<string>("");
+  const [channels, setChannels] = useState<Channel[]>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   let isLoaded = false;
@@ -23,6 +25,19 @@ export const Select = () => {
       setAlertType("success");
       setSearchParams({});
     }
+    api
+      .get("/channels/get-all")
+      .then((res) => {
+        const data = res.data.tags;
+        const tagedData = data.map((channel) => {
+          return { ...channel, tags: dummyTags } as Channel;
+        });
+        setChannels(tagedData);
+      })
+      .catch(() => {
+        setAlertStr("チャンネルの取得に失敗しました。");
+        setAlertType("error");
+      });
     isLoaded = true;
   }, []);
 
@@ -55,10 +70,10 @@ export const Select = () => {
             </div>
           </div>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 gy-3 mt-5">
-            {dummyChannels.map((channel: Channel) => (
+            {channels.map((channel: Channel) => (
               <div
                 className="col user-select-none"
-                key={channel.id}
+                key={`group-${channel.id}`}
                 data-bs-toggle="modal"
                 data-bs-target={`#modal-chennel-${channel.id}`}
               >
@@ -70,7 +85,7 @@ export const Select = () => {
         <div className="channel-group-list mt-9">
           <div className="fs-2 fw-bold">チャンネルをさがす</div>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-4 gy-3 mt-5">
-            {dummyChannels.map((channel) => (
+            {channels.map((channel) => (
               <div
                 className="col user-select-none"
                 key={channel.id}
@@ -89,7 +104,11 @@ export const Select = () => {
           <ChannelEntryModal channel={channel} key={channel.id} />
         ))
       }
-      <AlertToast alertType={alertType} alertStr={alertStr} setAlertType={setAlertType} />
+      <AlertToast
+        alertType={alertType}
+        alertStr={alertStr}
+        setAlertType={setAlertType}
+      />
     </>
   );
 };
