@@ -28,7 +28,12 @@ Rails.application.routes.draw do
 
   # entry
   scope '/server' do
-    resources :entries, except: [:new, :edit]
+    resources :entries, except: [:new, :edit] do
+      member do
+        patch :exit
+      end
+    end
   end
+  
 
 end

@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-    before_action :set_entry, only: [:show, :edit, :update, :destroy]
+    before_action :set_entry, only: [:show, :edit, :update, :exit, :destroy]
 
     def index
       @entries = Entry.all
@@ -19,9 +19,9 @@ class EntriesController < ApplicationController
         end
     end
   
-    def update
-        @entry.exit_at ||= DateTime.now if params[:exit]
-        if @entry.update(entry_params)
+    def exit
+        @entry.exit_at = DateTime.now
+        if @entry.save
             render json: @entry
         else
             render json: @entry.errors, status: :unprocessable_entity
