@@ -9,7 +9,7 @@ export const ChannelCard = (props: {
   const icon = channel.is_anonymous ? "/mdi_earth.svg" : "/mdi_group-fill.svg";
 
   const tagCount = channel.tags.filter(
-    (tag) => tag.name !== selectedTag,
+    (tag) => tag.id !== Number(selectedTag),
   ).length;
 
   return (
