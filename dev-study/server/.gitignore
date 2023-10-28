@@ -5,6 +5,8 @@ capybara-*.html
 /db/*.sqlite3-journal
 /db/*.sqlite3-[0-9]*
 /public/system
+/public/server/user_icon/*.png
+!/public/server/user_icon/default/*.png
 /coverage/
 /spec/tmp
 *.orig
