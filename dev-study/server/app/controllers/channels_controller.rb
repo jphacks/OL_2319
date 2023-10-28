@@ -20,7 +20,7 @@ class ChannelsController < ApplicationController
 
   def get_all
     @channels = Channel.all
-    render json: { tags: @channels }, status: 200
+    render json: { channels: @channels }, status: 200
   end
 
   def get_by_tag
