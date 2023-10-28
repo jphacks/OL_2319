@@ -37,7 +37,7 @@ class ChannelsController < ApplicationController
         name: channel.name,
         owner_id: channel.owner_id,
         is_anonymous: channel.is_anonymous,
-        tags: channel.tags.pluck(:name) # タグ名のリストを取得
+        tags: channel.tags # タグ名のリストを取得
       }
     end
   
