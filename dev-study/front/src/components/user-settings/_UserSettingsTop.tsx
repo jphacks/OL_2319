@@ -1,4 +1,5 @@
 import { HandlePage } from "./UserSettingsModal";
+import { apiEndpoint } from "../../utils";
 
 export const UserSettingsTop = (props: {
   className?: string;
@@ -13,7 +14,7 @@ export const UserSettingsTop = (props: {
         <div className="user-settings-left text-center">
           <div className="user-avater">
             <img
-              src="http://placekitten.com/200"
+              src={`${apiEndpoint}/user_icon/${localStorage.getItem("user_id")}.png`}
               alt="user avater"
               width={120}
             />

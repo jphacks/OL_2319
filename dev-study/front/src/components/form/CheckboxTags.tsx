@@ -9,7 +9,7 @@ export const CheckboxTags = (props: {
   className?: string;
 }) => {
   const { register, className } = props;
-  const [ tags, setTags ] = useState<Tag[]>([]);
+  const [tags, setTags] = useState<Tag[]>([]);
 
   useEffect(() => {
     api
@@ -21,7 +21,6 @@ export const CheckboxTags = (props: {
         console.log("タグの取得に失敗しました。");
       });
   }, []);
-
 
   const divider = (i: number) => (
     <li key={`divider${i}`}>

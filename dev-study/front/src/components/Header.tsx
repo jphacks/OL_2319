@@ -1,9 +1,12 @@
 import "../styles/Header.scss";
 import { Link } from "react-router-dom";
 import { UserSettingsModal } from ".";
+import { apiEndpoint } from "../utils";
 
 export const Header = () => {
-  const isLogin = localStorage.getItem("user_id") !== null;
+  const user_id = localStorage.getItem("user_id");
+  const isLogin = user_id !== null;
+  const timestamp = new Date().getTime();
   return (
     <div className="header bg-gray-700">
       <div className="container d-flex justify-content-between align-items-center py-3">
@@ -49,7 +52,7 @@ export const Header = () => {
               data-bs-target="#modal-user-settings"
             >
               <img
-                src="http://placekitten.com/200"
+                src={`${apiEndpoint}/user_icon/${user_id}.png?t=${timestamp}`}
                 alt="user avater"
                 width={50}
               />
