@@ -25,15 +25,11 @@ class ChannelsController < ApplicationController
 
   def get_by_tag
     keyword = params[:tag_name]
-    all_channels_with_tags = Channel
+    channels = Channel
       .joins("INNER JOIN channel_tag_rels ON channels.id = channel_tag_rels.channel_id")
       .joins("INNER JOIN tags ON channel_tag_rels.tag_id = tags.id")
-      # .select("channels.*, tags.id AS tag_id, tags.name AS tag_name")
-
-    channels = all_channels_with_tags
-      .select("DISTINCT channels.id, channels.name, channels.description, channels.is_anonymous")
+      .select("channels.*")
       .where("tags.name ILIKE ?", keyword)
-
     render json: { channels: channels }, status: 200
   end
 end
