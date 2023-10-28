@@ -7,6 +7,7 @@ import {
   ChannelExitModal,
   ChannelEditModal,
   ChannelDeleteModal,
+  QuestionModal,
 } from "../components";
 
 export const Channel = () => {
@@ -21,6 +22,7 @@ export const Channel = () => {
         <ChannelExitModal />
         <ChannelEditModal />
         <ChannelDeleteModal />
+        <QuestionModal />
       </div>
     </>
   );
