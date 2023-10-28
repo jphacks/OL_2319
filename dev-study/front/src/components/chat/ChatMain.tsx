@@ -56,9 +56,6 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
           ))}
         </div>
         <ChatMessageInput className="px-5 my-4" />
-        <button type="button" onClick={() => console.log("chats", chatLogs)}>
-          デバッグ
-        </button>
       </div>
     </>
   );
