@@ -3,13 +3,14 @@ import { ChatLog, ChatLogResponse } from "../../types";
 import dayjs from "dayjs";
 import { Chat } from "../chat";
 import { ChatMessageInput } from "./_ChatMessageInput";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { api } from "../../utils";
 import { useState } from "react";
 
 export const ChatMain = (props: { className?: string; channelId: number }) => {
   const { className, channelId } = props;
   const [chatLogs, setChatLogs] = useState<ChatLog[]>([]);
+  const chatLogEndRef = useRef<HTMLDivElement>(null);
 
   const fetchChat = () => {
     api
@@ -26,7 +27,7 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
       .catch((e) => {
         console.log(e);
       });
-  }
+  };
 
   useEffect(() => {
     fetchChat();
@@ -37,6 +38,11 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    if (chatLogEndRef.current) {
+      chatLogEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chatLogs]);
 
   return (
     <>
@@ -64,6 +70,7 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
           {chatLogs.map((chat, i) => (
             <Chat key={i} chat={chat} className="py-3 px-5" />
           ))}
+          <div ref={chatLogEndRef}></div>
         </div>
         <ChatMessageInput className="px-5 my-4" />
       </div>
