@@ -15,14 +15,17 @@ export const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    api.post("/users/login", data).then(() => {
-      navigate("/select?prev=login");
-    }
-    ).catch(() => {
-      setAlertType("error");
-      setAlertStr("ログインに失敗しました。");
-    });
-  }
+    api
+      .post("/users/login", data)
+      .then((res) => {
+        localStorage.setItem("user_id", res.data.id);
+        navigate("/select?prev=login");
+      })
+      .catch(() => {
+        setAlertType("error");
+        setAlertStr("ログインに失敗しました。");
+      });
+  };
   // TODO: ログイン機能実装
   // TODO: ユーザーフォームのバリデーションエラー表示
   const [searchParams, setSearchParams] = useSearchParams();
