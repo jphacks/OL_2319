@@ -32,6 +32,6 @@ class ChannelsController < ApplicationController
 
     channels = all_channels_with_tags.select("channels.id AS channel_id, channels.name, channels.description, channels.is_anonymous").where("tags.name ILIKE ?", keyword)
 
-    render json: { channels: channels }, status: 200
+    render json: { channels: all_channels_with_tags }, status: 200
   end
 end
