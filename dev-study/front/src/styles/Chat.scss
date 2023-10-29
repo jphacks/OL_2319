@@ -73,3 +73,9 @@ $message-send-input-height: 38px;
   
   z-index: 1;
 }
+
+.chat-content.wmde-markdown {
+  pre {
+    background-color: $gray-300;
+  }
+}

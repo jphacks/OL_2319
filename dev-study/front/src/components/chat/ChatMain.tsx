@@ -1,12 +1,11 @@
 import "../../styles/Chat.scss";
 import { ChatLog, ChatLogResponse } from "../../types";
-import dayjs from "dayjs";
 import { Chat } from "../chat";
 import { ChatMessageInput } from "./_ChatMessageInput";
 import { useEffect, useRef } from "react";
 import { api } from "../../utils";
 import { useState } from "react";
-
+import dayjs from "dayjs";
 export const ChatMain = (props: { className?: string; channelId: number }) => {
   const { className, channelId } = props;
   const [chatLogs, setChatLogs] = useState<ChatLog[]>([]);
