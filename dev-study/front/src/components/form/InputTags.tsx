@@ -40,6 +40,7 @@ export const InputTags = (props: {
   };
 
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    console.log(e.target);
     setSelectedTags([
       ...selectedTags,
       (e.target as HTMLInputElement).dataset.tag!,
@@ -63,7 +64,7 @@ export const InputTags = (props: {
         classNames={{ tag: "fw-medium", input: "w-100 dropdown btn-group" }}
         onChange={onChange}
         onKeyUp={onKeyUp}
-        onBlur={() => setCandidates([])}
+        onBlur={() => setTimeout(() => setCandidates([]), 500)}
       />
       {fields.map((field, idx) => (
         <input key={field.id} type="hidden" {...register(`tags.${idx}`)} />
