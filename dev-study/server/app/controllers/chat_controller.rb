@@ -10,7 +10,7 @@ class ChatController < ApplicationController
 
     # コマンド
     if @chat.content.include?('!cat')
-      @chat.content = 'にゃんにゃ〜〜ん！にゃん！にゃあ〜〜〜'
+      @chat.content = generate_random_nyan_phrase
     elsif @chat.content.include?('!goat')
       @chat.content = 'メエェメェェメエェ'
     elsif @chat.content.include?('!hourse')
@@ -34,4 +34,20 @@ class ChatController < ApplicationController
       .order(id: :asc)
     render json: { chats: chats }, status: 200
   end
+
+  def generate_random_nyan_phrase
+    nyan_prefix = 'にゃ'
+    nyan_elements = ['にゃん', 'にゃ', 'にゃあ〜〜〜〜', '!', '?']
+    random_nyan_phrase = nyan_prefix
+  
+    # ランダムな長さの猫語を生成
+    phrase_length = rand(5..15)
+    phrase_length.times do
+      random_element = nyan_elements.sample
+      random_nyan_phrase << random_element
+    end
+  
+    return random_nyan_phrase
+  end
+    
 end
