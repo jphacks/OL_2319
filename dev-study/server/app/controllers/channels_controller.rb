@@ -1,12 +1,53 @@
 class ChannelsController < ApplicationController
   def create
     @channel = Channel.new(name: params[:name], description: params[:description], owner_id: params[:owner_id], is_anonymous: params[:is_anonymous])
+    
     if @channel.save
       render json: { owner_id: @channel }, status: 200
     else
       render status: 422
     end
   end
+
+  def create_with_tags
+    channel = Channel.find_by(id: params[:channel_id])
+    tags_names = params[:tags]
+  
+    # 成功フラグを初期化
+    success = true
+  
+    tags_names.each do |tag_name|
+      # タグの新規作成または既存タグの検索
+      tag = Tag.find_or_initialize_by(name: tag_name)
+      if tag.new_record?
+        # タグが新規作成された場合のみ保存
+        if tag.save
+          # 紐付け
+          channel_tag_rel = ChannelTagRel.new(channel_id: channel.id, tag_id: tag.id)
+          unless channel_tag_rel.save
+            success = false
+            break
+          end
+        else
+          success = false
+          break
+        end
+      else
+        # 既存のタグが見つかった場合、紐付けのみ行う
+        channel_tag_rel = ChannelTagRel.new(channel_id: channel.id, tag_id: tag.id)
+        unless channel_tag_rel.save
+          success = false
+          break
+        end
+      end
+    end
+  
+    if success
+      render status: 200
+    else
+      render status: 422
+    end
+  end  
 
   def delete
     channel = Channel.find_by(id: params[:id])
