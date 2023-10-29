@@ -7,6 +7,16 @@ class ChatController < ApplicationController
       reply_to: params[:reply_to],
       is_question: params[:is_question]
     )
+
+    # コマンド
+    if @chat.content.include?('!cat')
+      @chat.content = 'にゃんにゃ〜〜ん！にゃん！にゃあ〜〜〜'
+    elsif @chat.content.include?('!goat')
+      @chat.content = 'メエェメェェメエェ'
+    elsif @chat.content.include?('!hourse')
+      @chat.content = 'ヒヒィ〜〜〜〜〜〜ン'
+    end
+
     if @chat.save
       render json: @chat, status: 200
     else

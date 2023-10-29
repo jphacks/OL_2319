@@ -1,6 +1,7 @@
 class ChannelsController < ApplicationController
   def create
     @channel = Channel.new(name: params[:name], description: params[:description], owner_id: params[:owner_id], is_anonymous: params[:is_anonymous])
+    
     if @channel.save
       render json: { owner_id: @channel }, status: 200
     else
