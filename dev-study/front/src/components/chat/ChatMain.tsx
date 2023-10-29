@@ -6,6 +6,7 @@ import { ChatMessageInput } from "./_ChatMessageInput";
 import { useEffect, useRef } from "react";
 import { api } from "../../utils";
 import { useState } from "react";
+import { dummyChats } from "../../types";
 
 export const ChatMain = (props: { className?: string; channelId: number }) => {
   const { className, channelId } = props;
@@ -16,13 +17,14 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
     api
       .get(`/chats/${channelId}`)
       .then((res) => {
-        const data = res.data.chats;
-        setChatLogs(
-          data.map((chat: ChatLogResponse) => ({
-            ...chat,
-            timestamp: dayjs(chat.created_at),
-          })),
-        );
+        // const data = res.data.chats;
+        // setChatLogs(
+        //   data.map((chat: ChatLogResponse) => ({
+        //     ...chat,
+        //     timestamp: dayjs(chat.created_at),
+        //   })),
+        // );
+        setChatLogs(dummyChats);
       })
       .catch((e) => {
         console.log(e);
