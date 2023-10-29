@@ -1,6 +1,6 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { HandlePage } from "./UserSettingsModal";
-import { AlertProps, CheckboxTags } from "..";
+import { AlertProps, InputTags } from "..";
 import { api } from "../../utils";
 
 export const CreateChannel = (props: {
@@ -10,7 +10,7 @@ export const CreateChannel = (props: {
 }) => {
   const { className, handlePage, alertProps } = props;
   const { setAlertStr, setAlertType } = alertProps;
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control } = useForm();
 
   const onSubmit = (data: FieldValues) => {
     api
@@ -55,7 +55,7 @@ export const CreateChannel = (props: {
           id="create-channel-description"
           {...register("description", { required: true })}
         />
-        <CheckboxTags register={register} className="w-50" />
+        <InputTags register={register} className="w-50" control={control} />
         <div className="user-settings-update-footer mt-5">
           <button
             type="submit"

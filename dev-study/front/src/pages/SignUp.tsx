@@ -4,7 +4,7 @@ import {
   InputPassword,
   InputPasswordConfirm,
   InputUserName,
-  CheckboxTags,
+  InputTags,
   AlertToast,
 } from "../components";
 import { SubmitHandler, FieldValues } from "react-hook-form";
@@ -14,7 +14,7 @@ import { api } from "../utils";
 import { useState } from "react";
 
 export const SignUp = () => {
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch, control } = useForm();
   const [alertType, setAlertType] = useState<"success" | "error" | undefined>(
     undefined,
   );
@@ -49,7 +49,7 @@ export const SignUp = () => {
           className="mt-4"
         />
         <InputUserName register={register} className="mt-4" />
-        <CheckboxTags register={register} className="mt-4" />
+        <InputTags register={register} className="mt-4" control={control}/>
         <button
           type="submit"
           className="btn btn-primary text-white fw-semibold w-100 fs-5 mt-8 px-4 py-3 lh-1"
