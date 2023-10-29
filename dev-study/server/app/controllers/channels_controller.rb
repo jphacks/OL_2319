@@ -11,7 +11,8 @@ class ChannelsController < ApplicationController
   def create_with_tags
     channel = Channel.find_by(id: params[:channel_id])
     # tags_name = params[:tags].split
-    tags_name = JSON.parse(params[:tags])
+    # tags_name = JSON.parse(params[:tags])
+    tags_name = params[:tags]
     success = true
   
     tags_name.each do |tag_name|
@@ -36,7 +37,6 @@ class ChannelsController < ApplicationController
       render status: 422
     end
   end
-  
 
   def delete
     channel = Channel.find_by(id: params[:id])
