@@ -9,11 +9,11 @@ class ChatController < ApplicationController
     )
 
     # コマンド
-    if @chat.content.include?('!cat')
+    if @chat.content.match(/^!cat/)
       @chat.content = generate_animal_sound('cat')
-    elsif @chat.content.include?('!goat')
+    elsif @chat.content.match(/^!goat/)
       @chat.content = generate_animal_sound('goat')
-    elsif @chat.content.include?('!dog')
+    elsif @chat.content.match(/^!dog/)
       @chat.content = generate_animal_sound('dog')
     end
 
