@@ -20,7 +20,7 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
           data.map((chat: ChatLogResponse) => ({
             ...chat,
             timestamp: dayjs(chat.created_at),
-          }))
+          })),
         );
       })
       .catch((e) => {

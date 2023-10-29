@@ -63,13 +63,10 @@ export const InputTags = (props: {
         classNames={{ tag: "fw-medium", input: "w-100 dropdown btn-group" }}
         onChange={onChange}
         onKeyUp={onKeyUp}
+        onBlur={() => setCandidates([])}
       />
       {fields.map((field, idx) => (
-        <input
-          key={field.id}
-          type="hidden"
-          {...register(`tags.${idx}`)}
-        />
+        <input key={field.id} type="hidden" {...register(`tags.${idx}`)} />
       ))}
       <ul
         className={`dropdown-menu tags-candidates ${

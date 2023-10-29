@@ -17,7 +17,10 @@ export const CreateChannel = (props: {
       .post("/channels/create", { ...data, owner_id: 1, is_anonymous: false })
       .then((res) => {
         const channel_id = res.data.id;
-        return api.post("/channels/create-with-tags", {...data, channel_id: channel_id});
+        return api.post("/channels/create-with-tags", {
+          ...data,
+          channel_id: channel_id,
+        });
       })
       .then(() => {
         handlePage("top");
