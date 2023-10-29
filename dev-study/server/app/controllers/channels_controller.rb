@@ -8,6 +8,36 @@ class ChannelsController < ApplicationController
     end
   end
 
+  def create_with_tags
+    channel = Channel.find_by(id: params[:channel_id])
+    # tags_name = params[:tags].split
+    tags_name = JSON.parse(params[:tags])
+    success = true
+  
+    tags_name.each do |tag_name|
+      # タグの新規作成
+      tag = Tag.new(name: tag_name)
+      if tag.save
+        # 紐付け
+        channel_tag_rel = ChannelTagRel.new(channel_id: channel.id, tag_id: tag.id)
+        if !channel_tag_rel.save
+          success = false
+          break
+        end
+      else
+        success = false
+        break
+      end
+    end
+  
+    if success
+      render status: 200
+    else
+      render status: 422
+    end
+  end
+  
+
   def delete
     channel = Channel.find_by(id: params[:id])
     if channel

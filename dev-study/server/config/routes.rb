@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # channel
   post 'server/channels/create' => 'channels#create'
+  post 'server/channels/create-with-tags' => 'channels#create_with_tags'
   delete 'server/channels/delete/:id' => 'channels#delete'
   get 'server/channels/get-all' => 'channels#get_all'
   get 'server/channels/get-by-tag' => 'channels#get_by_tag'
