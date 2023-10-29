@@ -49,7 +49,7 @@ export const SignUp = () => {
           className="mt-4"
         />
         <InputUserName register={register} className="mt-4" />
-        <InputTags register={register} className="mt-4" control={control}/>
+        <InputTags register={register} className="mt-4" control={control} />
         <button
           type="submit"
           className="btn btn-primary text-white fw-semibold w-100 fs-5 mt-8 px-4 py-3 lh-1"

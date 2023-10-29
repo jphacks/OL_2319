@@ -13,9 +13,7 @@ export const Chat = (props: { className?: string; chat: ChatLog }) => {
       >
         <div className="chat-avater">
           <img
-            src={`${apiEndpoint}/user_icon/${localStorage.getItem(
-              "user_id",
-            )}.png?t=${timestamp}`}
+            src={`${apiEndpoint}/user_icon/${chat.user_id}.png?t=${timestamp}`}
             alt="user avater"
             width={40}
           />

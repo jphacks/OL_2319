@@ -20,7 +20,7 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
           data.map((chat: ChatLogResponse) => ({
             ...chat,
             timestamp: dayjs(chat.created_at),
-          })),
+          }))
         );
       })
       .catch((e) => {
@@ -32,7 +32,7 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
     fetchChat();
     const intervalId = setInterval(() => {
       fetchChat();
-    }, 5000);
+    }, 1000);
     return () => clearInterval(intervalId);
     // eslint-disable-next-line
   }, []);
