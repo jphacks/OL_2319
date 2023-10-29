@@ -1,6 +1,7 @@
 # サンプル（プロダクト名）
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2023/07/JPHACKS2023_ogp.png)](https://www.youtube.com/watch?v=yYRQEdfGjEg)
+![スクリーンショット 2023-10-29 164949](https://github.com/jphacks/OL_2319/assets/46004336/3800d724-8625-44f4-bb18-782ae6773591)
+
 
 ## 製品概要
 
