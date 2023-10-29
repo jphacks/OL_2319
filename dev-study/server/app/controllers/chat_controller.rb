@@ -10,11 +10,11 @@ class ChatController < ApplicationController
 
     # コマンド
     if @chat.content.include?('!cat')
-      @chat.content = generate_random_nyan_phrase
+      @chat.content = generate_animal_sound('cat')
     elsif @chat.content.include?('!goat')
-      @chat.content = 'メエェメェェメエェ'
-    elsif @chat.content.include?('!hourse')
-      @chat.content = 'ヒヒィ〜〜〜〜〜〜ン'
+      @chat.content = generate_animal_sound('goat')
+    elsif @chat.content.include?('!dog')
+      @chat.content = generate_animal_sound('dog')
     end
 
     if @chat.save
@@ -35,13 +35,21 @@ class ChatController < ApplicationController
     render json: { chats: chats }, status: 200
   end
 
-  def generate_random_nyan_phrase
-    nyan_prefix = 'にゃ'
-    nyan_elements = ['にゃん', 'にゃ', 'にゃあ〜〜〜〜', '!', '?']
+  def generate_animal_sound(animal)
+    animal_sounds = {
+      'cat' => ['にゃ', 'にゃん', 'にゃ', 'にゃあ〜〜〜〜', '!', '?'],
+      'goat' => ['メエェ', 'メェェェ', 'メエェ', '', '?'],
+      'dog' => ['ワン', 'ワ〜〜〜ン', 'ワオン', 'ワワ', '!', '?']
+    }
+  
+    nyan_elements = animal_sounds[animal]
+    return nil unless nyan_elements
+  
+    nyan_prefix = nyan_elements.first
     random_nyan_phrase = nyan_prefix
   
-    # ランダムな長さの猫語を生成
-    phrase_length = rand(5..15)
+    # ランダムな長さの音を生成
+    phrase_length = rand(3..15)
     phrase_length.times do
       random_element = nyan_elements.sample
       random_nyan_phrase << random_element
