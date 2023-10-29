@@ -10,11 +10,11 @@ export const InputTags = (props: {
   register: UseFormRegister<FieldValues>;
   className?: string;
 }) => {
-  const { className, control } = props;
+  const { className, control, register } = props;
   const [tags, setTags] = useState<Tag[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [candidates, setCandidates] = useState<string[]>([]);
-  const { replace } = useFieldArray({
+  const { fields, replace } = useFieldArray({
     control: control,
     name: "tags",
   });
@@ -64,6 +64,13 @@ export const InputTags = (props: {
         onChange={onChange}
         onKeyUp={onKeyUp}
       />
+      {fields.map((field, idx) => (
+        <input
+          key={field.id}
+          type="hidden"
+          {...register(`tags.${idx}`)}
+        />
+      ))}
       <ul
         className={`dropdown-menu tags-candidates ${
           candidates.length === 0 ? "" : "show"
