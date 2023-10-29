@@ -1,6 +1,5 @@
 import "../../styles/Chat.scss";
-import { ChatLog, ChatLogResponse } from "../../types";
-import dayjs from "dayjs";
+import { ChatLog } from "../../types";
 import { Chat } from "../chat";
 import { ChatMessageInput } from "./_ChatMessageInput";
 import { useEffect, useRef } from "react";
@@ -16,7 +15,7 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
   const fetchChat = () => {
     api
       .get(`/chats/${channelId}`)
-      .then((res) => {
+      .then(() => {
         // const data = res.data.chats;
         // setChatLogs(
         //   data.map((chat: ChatLogResponse) => ({

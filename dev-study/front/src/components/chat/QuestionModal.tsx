@@ -11,6 +11,13 @@ const ModalContent = () => {
   const closeBtn = useRef<HTMLButtonElement>(null);
   const { channelId } = useParams<{ channelId: string }>();
   const navigate = useNavigate();
+  const ua = navigator.userAgent.toLowerCase();
+  const os = ua.indexOf("windows nt") !== -1 ? "Windows"
+    : ua.indexOf("mac os x") !== -1 ? "MacOS"
+    : ua.indexOf("android") !== -1 ? "Android"
+    : ua.indexOf("iphone") !== -1 || ua.indexOf("ipod") !== -1 ? "iOS"
+    : ua.indexOf("linux") !== -1 ? "Linux"
+    : "Other";
 
   const sendQuestion = () => {
     if (content === "") return;
@@ -42,16 +49,14 @@ const ModalContent = () => {
 ## 試したこと
 
 
-## 表示された画像
-
-
 ## エラーコード
 \`\`\`
 world
 \`\`\`
 
-## 環境
-OS(自動取得しています) 
+## 環境  
+- OS(自動取得しています) 
+  - ${os}
 `);
   };
 
