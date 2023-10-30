@@ -6,13 +6,22 @@ import { useEffect, useRef } from "react";
 import { api } from "../../utils";
 import { useState } from "react";
 import dayjs from "dayjs";
-export const ChatMain = (props: { className?: string; channelId: number }) => {
-  const { className, channelId } = props;
+import ActionCable from "actioncable";
+
+export const ChatMain = (props: {
+  className?: string;
+  channelId: number;
+  cable: ActionCable.Cable;
+}) => {
+  const { className, channelId, cable } = props;
   const [chatLogs, setChatLogs] = useState<ChatLog[]>([]);
   const chatLogEndRef = useRef<HTMLDivElement>(null);
+  const chatWindowRef = useRef<HTMLDivElement>(null);
+  const [subscription, setSubscription] = useState<ActionCable.Channel>();
+  const [firstLoaded, setFirstLoaded] = useState<boolean>(false);
 
-  const fetchChat = () => {
-    api
+  const fetchChat = async () => {
+    await api
       .get(`/chats/${channelId}`)
       .then((res) => {
         const data = res.data.chats;
@@ -26,22 +35,41 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
       .catch((e) => {
         console.log(e);
       });
+    setFirstLoaded(true);
   };
 
   useEffect(() => {
     fetchChat();
-    const intervalId = setInterval(() => {
-      fetchChat();
-    }, 1000);
-    return () => clearInterval(intervalId);
+    const sub = cable?.subscriptions.create(
+      {
+        channel: "ChatChannel",
+        channel_id: channelId,
+        user_id: localStorage.getItem("user_id"),
+      },
+      {
+        received: async () => {
+          const scroll = !(
+            (chatWindowRef.current?.scrollTop || 0) +
+              (chatWindowRef.current?.clientHeight || 0) !==
+            chatWindowRef.current?.scrollHeight
+          );
+          await fetchChat();
+          if (chatLogEndRef.current && scroll) {
+            chatLogEndRef.current.scrollIntoView({ behavior: "smooth" });
+          }
+        },
+      },
+    );
+    setSubscription(sub);
+    return () => {
+      subscription?.unsubscribe();
+    };
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    if (chatLogEndRef.current) {
-      chatLogEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [chatLogs]);
+    chatLogEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [firstLoaded]);
 
   return (
     <>
@@ -65,7 +93,7 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
             />
           </button>
         </div>
-        <div className="chat-window mt-auto">
+        <div className="chat-window mt-auto" ref={chatWindowRef}>
           {chatLogs.map((chat, i) => (
             <Chat key={i} chat={chat} className="py-3 px-5" />
           ))}

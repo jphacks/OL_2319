@@ -9,7 +9,7 @@ export const Chat = (props: { className?: string; chat: ChatLog }) => {
   return (
     <>
       <div
-        className={`d-flex ${className} ${chat.is_question ? "question" : ""}`}
+        className={`d-flex w-100 ${className} ${chat.is_question ? "question" : ""}`}
       >
         <div className="chat-avater">
           <img
@@ -18,8 +18,9 @@ export const Chat = (props: { className?: string; chat: ChatLog }) => {
             width={40}
           />
         </div>
-        <div className="flex-grow-1">
+        <div className="flex-grow-1 overflow-x-auto">
           <div className="d-flex align-items-center">
+            
             <div className="chat-user ms-2 fw-bold fs-6">{chat.user_name}</div>
             <div className="chat-timestamp ms-2">
               {chat.timestamp.format("HH:mm")}
