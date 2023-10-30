@@ -75,7 +75,8 @@ $message-send-input-height: 38px;
 }
 
 .chat-content.wmde-markdown {
-  pre {
+  code {
     background-color: $gray-300;
+    overflow-x: auto;
   }
 }

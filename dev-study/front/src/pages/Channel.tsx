@@ -23,18 +23,18 @@ export const Channel = () => {
     <>
       <Header />
       <div className="d-flex justify-content-between">
-        <ChatLeftSideBar className="w-25" />
+        <ChatLeftSideBar className="px-7" />
         <ChatMain
           channelId={Number(channelId)}
-          className="w-75"
+          className="flex-grow-1 w-10"
           cable={cable}
         />
-        <ChatRightSideBar className="w-25" />
-        <ChannelExitModal />
-        <ChannelEditModal />
-        <ChannelDeleteModal />
-        <QuestionModal />
+        <ChatRightSideBar className="px-3 py-5" cable={cable}/>
       </div>
+      <ChannelExitModal />
+      <ChannelEditModal />
+      <ChannelDeleteModal />
+      <QuestionModal />
     </>
   );
 };
