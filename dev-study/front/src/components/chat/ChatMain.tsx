@@ -68,7 +68,6 @@ export const ChatMain = (props: {
   }, []);
 
   useEffect(() => {
-    console.log(firstLoaded);
     chatLogEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [firstLoaded]);
 
