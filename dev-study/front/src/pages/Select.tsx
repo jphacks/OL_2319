@@ -45,6 +45,7 @@ export const Select = () => {
         setAlertStr("タグの取得に失敗しました。");
         setAlertType("error");
       });
+    // eslint-disable-next-line
     isLoaded = true;
   }, []);
 

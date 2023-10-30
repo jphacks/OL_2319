@@ -23,9 +23,10 @@ $form-text-font-size: 0.75rem;
 $input-group-addon-border-color: $gray-500;
 
 // dropdown overrides
-$dropdown-link-hover-bg: none;
-$dropdown-link-active-bg: none;
-$dropdown-link-active-color: inherit;
+$dropdown-link-hover-bg: $gray-300;
+.tags-candidates .dropdown-item {
+  cursor: pointer;
+}
 
 // spacing overrides
 $spacers: (
