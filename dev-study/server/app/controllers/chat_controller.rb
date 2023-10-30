@@ -18,6 +18,7 @@ class ChatController < ApplicationController
     end
 
     if @chat.save
+      ApplicationJob.perform_later(params[:channel_id])
       render json: @chat, status: 200
     else
       render status: 200
@@ -41,21 +42,21 @@ class ChatController < ApplicationController
       'goat' => ['メエェ', 'メェェェ', 'メエェ', '', '?'],
       'dog' => ['ワン', 'ワ〜〜〜ン', 'ワオン', 'ワワ', '!', '?']
     }
-  
+
     nyan_elements = animal_sounds[animal]
     return nil unless nyan_elements
-  
+
     nyan_prefix = nyan_elements.first
     random_nyan_phrase = nyan_prefix
-  
+
     # ランダムな長さの音を生成
     phrase_length = rand(3..15)
     phrase_length.times do
       random_element = nyan_elements.sample
       random_nyan_phrase << random_element
     end
-  
+
     return random_nyan_phrase
   end
-    
+
 end

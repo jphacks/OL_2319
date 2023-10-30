@@ -6,10 +6,13 @@ import { useEffect, useRef } from "react";
 import { api } from "../../utils";
 import { useState } from "react";
 import dayjs from "dayjs";
-export const ChatMain = (props: { className?: string; channelId: number }) => {
-  const { className, channelId } = props;
+import ActionCable from "actioncable";
+
+export const ChatMain = (props: { className?: string; channelId: number, cable: ActionCable.Cable }) => {
+  const { className, channelId, cable } = props;
   const [chatLogs, setChatLogs] = useState<ChatLog[]>([]);
   const chatLogEndRef = useRef<HTMLDivElement>(null);
+  const [subscription, setSubscription] = useState<ActionCable.Channel>();
 
   const fetchChat = () => {
     api
@@ -22,6 +25,9 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
             timestamp: dayjs(chat.created_at),
           })),
         );
+        if (chatLogEndRef.current) {
+          chatLogEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -30,18 +36,22 @@ export const ChatMain = (props: { className?: string; channelId: number }) => {
 
   useEffect(() => {
     fetchChat();
-    const intervalId = setInterval(() => {
-      fetchChat();
-    }, 1000);
-    return () => clearInterval(intervalId);
+    console.log("create subscription");
+    const sub = cable?.subscriptions.create(
+      { channel: "ChatChannel", channel_id: channelId, user_id: localStorage.getItem("user_id") },
+      {
+        received: () => {
+          fetchChat();
+        },
+      },
+    )
+    setSubscription(sub);
+    return () => {
+      console.log("unsubscribe");
+      subscription?.unsubscribe();
+    };
     // eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    if (chatLogEndRef.current) {
-      chatLogEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [chatLogs]);
 
   return (
     <>
